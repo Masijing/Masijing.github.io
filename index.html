@@ -1,10 +1,105 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <title>我的个人网站</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科研工具箱｜Masijing</title>
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif;}
+        body{background:#f4f7fa;padding:30px;max-width:1100px;margin:0 auto;}
+        h1{text-align:center;color:#222;margin-bottom:8px;}
+        .desc{text-align:center;color:#666;margin-bottom:32px;}
+        .grid{display:grid;grid-template-columns: repeat(auto-fill, minmax(220px,1fr));gap:16px;margin-bottom:36px;}
+        .card{background:white;padding:20px;border-radius:10px;box-shadow:0 2px 8px #00000015;text-align:center;}
+        .card h3{margin-bottom:12px;color:#333;}
+        .card a{display:block;text-decoration:none;color:#2b6ed9;padding:6px;}
+        .section-title{font-size:20px;margin:24px 0 12px;color:#222;border-left:4px solid #2b6ed9;padding-left:10px;}
+        .prompt-box{background:white;padding:20px;border-radius:10px;box-shadow:0 2px 8px #00000015;}
+        textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:15px;height:120px;margin:10px 0;}
+        button{padding:9px 16px;border:none;background:#2b6ed9;color:#fff;border-radius:6px;cursor:pointer;margin-right:8px;margin-top:6px;}
+        button:hover{background:#1f56b8;}
+    </style>
 </head>
 <body>
-    <h1>你好！欢迎来到我的网站</h1>
-    <p>这是我用 GitHub Pages 搭建出来的页面✨</p >
+    <h1>🔬 科研工具箱</h1>
+    <div class="desc">文献检索 + 多AI科研助手一站式导航</div>
+
+    <div class="section-title">📚 文献数据库</div>
+    <div class="grid">
+        <div class="card">
+            <h3>知网 CNKI</h3>
+            <a href=" " target="_blank">打开知网</a >
+        </div>
+        <div class="card">
+            <h3>维普</h3>
+            <a href="https://www.cqvip.com/" target="_blank">打开维普</a >
+        </div>
+        <div class="card">
+            <h3>PubMed</h3>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank">打开PubMed</a >
+        </div>
+    </div>
+
+    <div class="section-title">🤖 多AI科研助手</div>
+    <div class="grid">
+        <div class="card">
+            <h3>豆包</h3>
+            <a href="https://www.doubao.com/" target="_blank">打开豆包</a >
+        </div>
+        <div class="card">
+            <h3>DeepSeek</h3>
+            <a href="https://chat.deepseek.com/" target="_blank">打开DeepSeek</a >
+        </div>
+        <div class="card">
+            <h3>通义千问</h3>
+            <a href="https://tongyi.aliyun.com/" target="_blank">打开通义千问</a >
+        </div>
+        <div class="card">
+            <h3>ChatGPT</h3>
+            <a href="https://chat.openai.com/" target="_blank">打开GPT</a >
+        </div>
+        <div class="card">
+            <h3>Kimi</h3>
+            <a href="https://kimi.moonshot.cn/" target="_blank">打开Kimi</a >
+        </div>
+        <div class="card">
+            <h3>Gemini</h3>
+            <a href="https://gemini.google.com/" target="_blank">打开Gemini</a >
+        </div>
+    </div>
+
+    <div class="section-title">📝 科研通用Prompt模板（复制给各个AI）</div>
+    <div class="prompt-box">
+        <p>科研通用指令，复制发给AI做文献解读、课题设计：</p >
+<textarea id="prompt">你是医学科研专家，帮我完成下面任务：
+课题方向：二甲双胍联合三七总皂苷治疗糖尿病创面，机制围绕AMPK、炎症因子IL‑6、IL‑1β，创面愈合。
+任务：帮我整理文献、梳理通路逻辑、撰写论文、修改综述、实验方案优化，给出严谨学术表述，区分已知结论和待验证假说。</textarea>
+        <br>
+        <button onclick="copyPrompt()">复制Prompt</button>
+    </div>
+
+    <div class="section-title">🔍 文献一键检索</div>
+    <div class="prompt-box">
+        <input id="kw" placeholder="输入文献检索关键词" style="width:75%;padding:8px;border:1px solid #ddd;border-radius:6px;font-size:15px;">
+        <button onclick="searchAll()">知网+维普+PubMed同时检索</button>
+    </div>
+
+    <script>
+        //一键复制prompt
+        function copyPrompt(){
+            const p = document.getElementById("prompt");
+            p.select();
+            navigator.clipboard.writeText(p.value);
+            alert("✅ Prompt复制成功，可以粘贴到任意AI对话框");
+        }
+        //多数据库同时检索
+        function searchAll(){
+            let kw = document.getElementById("kw").value.trim();
+            if(!kw) return alert("请输入检索关键词");
+            window.open(`https://www.cnki.net/kcms/single.aspx?kw=${kw}`);
+            window.open(`https://www.cqvip.com/QK/SS.aspx?kw=${kw}`);
+            window.open(`https://pubmed.ncbi.nlm.nih.gov/?term=${kw}`);
+        }
+    </script>
 </body>
 </html>
